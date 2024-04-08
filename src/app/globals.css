@@ -56,11 +56,11 @@ body {
   cursor: pointer;
 }
 
-._btn-icon:hover svg {
+/* ._btn-icon:hover svg {
   fill: transparent;
   stroke: #acacac;
   cursor: pointer;
-}
+} */
 
 ._btn-text:active {
   border-color: #ad61ff;
@@ -68,11 +68,11 @@ body {
   cursor: pointer;
 }
 
-._btn-icon:active svg {
+/* ._btn-icon:active svg {
   fill: transparent;
   stroke: #ffffff;
   cursor: pointer;
-}
+} */
 
 ._btn-icon:active .track-play__like-svg,
 ._btn-icon:active .track-play__dislike-svg {
@@ -568,7 +568,7 @@ body {
   height: auto;
 }
 
-.bar {
+/* .bar {
   position: absolute;
   bottom: 0;
   left: 0;
@@ -867,4 +867,4 @@ body {
 
 .volume__progress-line {
   width: 109px;
-}
+} */
