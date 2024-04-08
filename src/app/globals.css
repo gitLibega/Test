@@ -363,7 +363,7 @@ body {
   text-align: end;
 }
 
-.playlist__item {
+/* .playlist__item {
   width: 100%;
   display: block;
   margin-bottom: 12px;
@@ -485,7 +485,7 @@ body {
   line-height: 24px;
   text-align: right;
   color: #696969;
-}
+} */
 
 .sidebar__personal {
   display: -webkit-box;
