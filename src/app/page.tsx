@@ -2,47 +2,14 @@ import Image from "next/image";
 import styles from "./page.module.css";
 import Track from "@/components/Track/Track";
 import Bar from "@/components/Bar/Bar"
+import Navigation from "@/components/Navigation/Navigation";
 
 export default function Home() {
   return (
     <div className="wrapper">
       <div className="container">
         <main className="main">
-          <nav className="main__nav nav">
-            <div className="nav__logo logo">
-              <Image
-                className="logo__image"
-                src="/img/logo.png"
-                alt="Логотип скайпро музыка"
-                width={133}
-                height={17}
-              />
-            </div>
-            <div className="nav__burger burger">
-              <span className="burger__line" />
-              <span className="burger__line" />
-              <span className="burger__line" />
-            </div>
-            <div className="nav__menu menu">
-              <ul className="menu__list">
-                <li className="menu__item">
-                  <a href="#" className="menu__link">
-                    Главное
-                  </a>
-                </li>
-                <li className="menu__item">
-                  <a href="#" className="menu__link">
-                    Мой плейлист
-                  </a>
-                </li>
-                <li className="menu__item">
-                  <a href="../signin.html" className="menu__link">
-                    Войти
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </nav>
+          <Navigation></Navigation>
           <div className="main__centerblock centerblock">
             <div className="centerblock__search search">
               <svg className="search__svg">
