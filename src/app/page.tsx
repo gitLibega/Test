@@ -49,7 +49,7 @@ export default function Home() {
               </div>
             </div>
           </div>
-          <div className="main__sidebar sidebar">
+          {/* <div className="main__sidebar sidebar">
             <div className="sidebar__personal">
               <p className="sidebar__personal-name">Sergey.Ivanov</p>
               <div className="sidebar__icon">
@@ -89,7 +89,7 @@ export default function Home() {
                 </div>
               </div>
             </div>
-          </div>
+          </div> */}
         </main>
         <Bar></Bar>
         <footer className="footer" />

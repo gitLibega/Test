@@ -109,10 +109,10 @@ body {
   padding: 20px 40px 20px 111px;
 }
 
-.main__sidebar {
+/* .main__sidebar {
   max-width: 418px;
   padding: 20px 90px 20px 78px;
-}
+} */
 
 /* .nav__logo {
   width: 113.33px;
@@ -487,7 +487,7 @@ body {
   color: #696969;
 } */
 
-.sidebar__personal {
+/* .sidebar__personal {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -502,18 +502,18 @@ body {
   -ms-flex-pack: end;
   justify-content: flex-end;
   padding: 12px 0 15px 0;
-}
+} */
 
-.sidebar__personal-name {
+/* .sidebar__personal-name {
   font-style: normal;
   font-weight: 400;
   font-size: 16px;
   line-height: 24px;
   color: #ffffff;
   margin-right: 16px;
-}
+} */
 
-.sidebar__icon {
+/* .sidebar__icon {
   width: 43px;
   height: 43px;
   background-color: #313131;
@@ -552,9 +552,9 @@ body {
 .sidebar__item {
   width: 250px;
   height: 150px;
-}
+} */
 
-.sidebar__item:not(:last-child) {
+/* .sidebar__item:not(:last-child) {
   margin-bottom: 30px;
 }
 
@@ -566,7 +566,7 @@ body {
 .sidebar__img {
   width: 100%;
   height: auto;
-}
+} */
 
 /* .bar {
   position: absolute;
