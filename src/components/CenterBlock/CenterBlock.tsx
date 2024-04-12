@@ -1,6 +1,7 @@
 import styles from "./CentarBlock.module.css"
 import Track from "@/components/Track/Track";
 import classNames from "classnames";
+import Filters from "../Filters/Filters";
 
 export default function CenterBlock() {
   return (
@@ -17,16 +18,7 @@ export default function CenterBlock() {
               />
             </div>
             <h2 className={styles.centerblockH2}>Треки</h2>
-            <div className={styles.centerblockFilter}>
-              <div className={styles.filterTitle}>Искать по:</div>
-              <div className={classNames(styles.filterButton, styles._btnText)}>
-                исполнителю
-              </div>
-              <div className={classNames(styles.filterButton, styles._btnText)}>
-                году выпуска
-              </div>
-              <div className={classNames(styles.filterButton, styles._btnText)}>жанру</div>
-            </div>
+            <Filters/>
             <div className={styles.centerblockContent}>
               <div className={styles.contentTitle}>
                 <div className={classNames(styles.playlistTitleCol, styles.col01)}>Трек</div>
