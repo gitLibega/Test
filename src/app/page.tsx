@@ -1,4 +1,4 @@
-import styles from "./page.module.css";
+// import styles from "./page.module.css";
 import Bar from "@/components/Bar/Bar"
 import Navigation from "@/components/Navigation/Navigation";
 import SideBar from "@/components/SideBar/SideBar";
