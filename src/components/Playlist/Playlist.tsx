@@ -1,8 +1,11 @@
-import Track from "../Track/Track";
+import { getTracks } from "@/api/tracks";
+import Track from "../Track/Track"
 import styles from "./Plaulist.module.css";
 import classNames from "classnames";
+import { trackType } from "@/types";
 
-export default function Playlist () {
+export default async function Playlist () {
+  const trasksData:trackType[] = await getTracks();
   return (
     <div className={styles.centerblockContent}>
         <div className={styles.contentTitle}>
@@ -22,7 +25,13 @@ export default function Playlist () {
           </div>
         </div>
         <div className={styles.contentPlaylist}>
-          <Track />
+          {trasksData.map((trackData) => (
+            <Track key={trackData.id}
+            name={trackData.name}
+            author={trackData.author}
+            album={trackData.album}
+            />
+          ))}
         </div>
       </div>
   )

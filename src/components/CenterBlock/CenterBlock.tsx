@@ -1,5 +1,4 @@
 import styles from "./CentarBlock.module.css";
-import Track from "@/components/Track/Track";
 import Filters from "../Filters/Filters";
 import Search from "../Search/Search";
 import Playlist from "../Playlist/Playlist";
