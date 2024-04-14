@@ -20,3 +20,41 @@
   color: #ad61ff;
   cursor: pointer;
 }
+.filterList {
+  position: static;
+  width: 180px;
+  height: 237px;
+   display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 0px;
+}
+.li{
+  position: static;
+  width: 152px;
+  height: 24px;
+  /* Auto layout */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+  margin: 10px 0px;
+}
+
+.li:hover{
+  color: rgb(182, 114, 255);
+  font-family: StratosSkyeng;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 24px;
+  letter-spacing: 0%;
+  text-align: left;
+  text-decoration-line: underline;
+  cursor: pointer;
+}
+
+

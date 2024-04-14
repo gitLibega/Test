@@ -15,10 +15,10 @@ export default function FilterItem({ hendleFilterClick, title, list, isOpened }:
       <div onClick={() => hendleFilterClick(title)} className={classNames(styles.filterButton, styles._btnText)}>
         {title}
       </div>
-      {isOpened &&(<ul>
+      {isOpened &&(<ul className={styles.filterList}>
         {/* не совсем понятна данная запись */}
         {list.map((item) => (   
-          <li key={item}>{item}</li>
+          <li className={styles.li} key={item}>{item}</li>
         ))}
       </ul>)}
     </>

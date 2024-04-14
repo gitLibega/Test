@@ -5,7 +5,13 @@ import classNames from "classnames";
 import { trackType } from "@/types";
 
 export default async function Playlist () {
-  const trasksData:trackType[] = await getTracks();
+  //обработка ошибок
+  let tracksData: trackType[];
+  try {
+    tracksData = await getTracks();
+  } catch (error:any) {
+    throw new Error(error.message);
+  }
   return (
     <div className={styles.centerblockContent}>
         <div className={styles.contentTitle}>
@@ -25,7 +31,7 @@ export default async function Playlist () {
           </div>
         </div>
         <div className={styles.contentPlaylist}>
-          {trasksData.map((trackData) => (
+          {tracksData.map((trackData) => (
             <Track key={trackData.id}
             name={trackData.name}
             author={trackData.author}
