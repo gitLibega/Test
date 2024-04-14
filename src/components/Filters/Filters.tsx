@@ -1,17 +1,29 @@
-import styles from "./Filters.module.css"
-import classNames from "classnames"
+"use client";
+import { useState } from "react";
+import FilterItem from "./FilterItem/FilterItem";
+import styles from "./Filters.module.css";
+import { filters } from "./data";
+
+
 
 export default function Filters() {
+  const [activeFilter, setActiveFilter] = useState<string | null>(null);
+  //Обработчик клика
+  function hendleFilterClick(newFilter: string) {
+    setActiveFilter((prev) => (prev === newFilter ? null : newFilter));
+  }
   return (
     <div className={styles.centerblockFilter}>
-              <div className={styles.filterTitle}>Искать по:</div>
-              <div className={classNames(styles.filterButton, styles._btnText)}>
-                исполнителю
-              </div>
-              <div className={classNames(styles.filterButton, styles._btnText)}>
-                году выпуска
-              </div>
-              <div className={classNames(styles.filterButton, styles._btnText)}>жанру</div>
-            </div>
-          )
-        }
+      <div className={styles.filterTitle}>Искать по:</div>
+      {filters.map((filter) => (
+        <FilterItem
+          key={filter.title}
+          isOpened={activeFilter === filter.title}
+          hendleFilterClick={hendleFilterClick}
+          title={filter.title}
+          list={filter.list}
+        />
+      ))}
+    </div>
+  );
+}
