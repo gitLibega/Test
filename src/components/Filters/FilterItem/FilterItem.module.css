@@ -1,3 +1,7 @@
+.wrapper{
+  position: relative;
+  left: 10px;
+}
 .filterButton {
   font-style: normal;
   font-weight: 400;
@@ -21,39 +25,30 @@
   cursor: pointer;
 }
 .filterList {
-  position: static;
-  width: 180px;
-  height: 237px;
-   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 0px;
-}
-.li{
-  position: static;
-  width: 152px;
-  height: 24px;
-  /* Auto layout */
   display: flex;
+  position: absolute;
+  width: 248px;
+  height: 305px;
+  top: 45px;
+  padding: 34px 0px 0px 0px;
+  gap: 10px;
+  border-radius: 8px;
+  opacity: 0px;
+  background: #313131;
   flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
-  flex: none;
-  order: 0;
-  flex-grow: 0;
-  margin: 10px 0px;
+  align-items: center;
+}
+.filterItem{
+ font-family: "Montserrrat", sans-serif;
+ font-size: 20px;
+ font-weight: 400;
+ line-height: 24px;
+ text-align: left;
 }
 
-.li:hover{
-  color: rgb(182, 114, 255);
-  font-family: StratosSkyeng;
-  font-size: 20px;
-  font-weight: 400;
-  line-height: 24px;
-  letter-spacing: 0%;
-  text-align: left;
-  text-decoration-line: underline;
+.filterItem:hover{
+  color: #b672ff;
+  text-decoration: underline;
   cursor: pointer;
 }
 

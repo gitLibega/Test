@@ -11,16 +11,16 @@ type FilterItemType = {
 
 export default function FilterItem({ hendleFilterClick, title, list, isOpened }:FilterItemType) {
   return (
-    <>
+    <div className={styles.wrapper}>
       <div onClick={() => hendleFilterClick(title)} className={classNames(styles.filterButton, styles._btnText)}>
         {title}
       </div>
       {isOpened &&(<ul className={styles.filterList}>
         {/* не совсем понятна данная запись */}
         {list.map((item) => (   
-          <li className={styles.li} key={item}>{item}</li>
+          <li className={styles.filterItem} key={item}>{item}</li>
         ))}
       </ul>)}
-    </>
+    </div>
   );
 }

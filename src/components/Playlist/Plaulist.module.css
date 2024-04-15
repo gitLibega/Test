@@ -6,6 +6,7 @@
   -webkit-box-direction: normal;
   -ms-flex-direction: column;
   flex-direction: column;
+  height: 500px;
 }
 .contentTitle {
   display: -webkit-box;
@@ -64,4 +65,8 @@
   -ms-flex-direction: column;
   flex-direction: column;
   overflow-y: auto;
+    -webkit-scrollbar: vertical;
+  scrollbar-width: thin;
+  
+  
 }
