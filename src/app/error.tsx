@@ -1,14 +1,11 @@
 'use client';
 
+import { ErrorType } from '@/types';
 import { useEffect } from 'react';
 
-// type ErrorType = {
-//  error: ;
-//  reset: ;
-  
-// }
 
-export default function Error({ error, reset }) {
+
+export default function Error({ error, reset }: ErrorType) {
   useEffect(() => {
     // Логирование ошибки
     console.error(error);
