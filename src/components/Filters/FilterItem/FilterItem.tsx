@@ -5,22 +5,36 @@ import classNames from "classnames";
 type FilterItemType = {
   title: string;
   list: string[]; //массив списка
-  hendleFilterClick: (newFilter:string) => void;
-  isOpened: boolean
-}
+  hendleFilterClick: (newFilter: string) => void;
+  isOpened: boolean;
+};
 
-export default function FilterItem({ hendleFilterClick, title, list, isOpened }:FilterItemType) {
+export default function FilterItem({
+  hendleFilterClick,
+  title,
+  list,
+  isOpened,
+}: FilterItemType) {
   return (
     <div className={styles.wrapper}>
-      <div onClick={() => hendleFilterClick(title)} className={classNames(styles.filterButton, styles._btnText)}>
+      <div
+        onClick={() => hendleFilterClick(title)}
+        className={classNames(styles.filterButton, styles._btnText, {
+          [styles.active]: isOpened,
+        })}
+      >
         {title}
       </div>
-      {isOpened &&(<ul className={styles.filterList}>
-        {/* не совсем понятна данная запись */}
-        {list.map((item) => (   
-          <li className={styles.filterItem} key={item}>{item}</li>
-        ))}
-      </ul>)}
+      {isOpened && (
+        <ul className={styles.filterList}>
+          {/* не совсем понятна данная запись */}
+          {list.map((item) => (
+            <li className={styles.filterItem} key={item}>
+              {item}
+            </li>
+          ))}
+        </ul>
+      )}
     </div>
   );
 }
