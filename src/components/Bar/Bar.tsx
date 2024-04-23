@@ -95,14 +95,14 @@ export default function Bar({ track }: BarType) {
                   </svg>
                 </div>
                 <div className={styles.trackPlayAuthor}>
-                  <a className={styles.trackPlayAuthorLink} href="http://">
-                    Ты та...
-                  </a>
+                  <span className={styles.trackPlayAuthorLink}>
+                    {track.name}
+                  </span>
                 </div>
                 <div className={styles.trackPlayAlbum}>
-                  <a className={styles.trackPlayAlbumLink} href="http://">
-                    Баста
-                  </a>
+                  <span className={styles.trackPlayAlbumLink}>
+                    {track.author}
+                  </span>
                 </div>
               </div>
               <div className={styles.trackPlayLikeDis}>
