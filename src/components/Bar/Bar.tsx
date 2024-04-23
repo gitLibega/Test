@@ -4,6 +4,8 @@ import styles from "./Bar.module.css";
 import classNames from "classnames";
 import { trackType } from "@/types";
 import ProgressBar from "../ProgressBar/ProgressBar";
+import VolumeBar from "../VolumeBar/VolumeBar";
+import PlayerTrackPlay from "../PlayerTrackPlay/PlayerTrackPlay";
 
 type BarType = {
   track: trackType;
@@ -12,9 +14,25 @@ type BarType = {
 export default function Bar({ track }: BarType) {
   const [currentTime, setCurrentTime] = useState<number>(0);
   const [isPlaying, setIsPlaying] = useState<boolean>(false);
+  const [volume, setVolume] = useState<number>(0.5);
   const audioRef = useRef<null | HTMLAudioElement>(null);
 
   const duration = audioRef.current?.duration;
+
+  
+
+  useEffect(() => {
+    audioRef.current?.addEventListener("timeupdate", () =>
+      setCurrentTime(audioRef.current!.currentTime)
+    );
+  }, []);
+
+
+  useEffect(() => {
+    if (audioRef.current) {
+      audioRef.current.volume = volume;
+    }
+  }, [volume]);
 
   const togglePlay = () => {
     if (audioRef.current) {
@@ -27,18 +45,20 @@ export default function Bar({ track }: BarType) {
     }
   };
 
-  useEffect(() => {
-    audioRef.current?.addEventListener("timeupdate", () =>
-      setCurrentTime(audioRef.current!.currentTime)
-    );
-  }, []);
-
   const handleSeek = (event: ChangeEvent<HTMLInputElement>) => {
     if (audioRef.current) {
       setCurrentTime(Number(event.target.value));
       audioRef.current.currentTime = Number(event.target.value);
     }
   };
+
+  const handleVolume = (event: ChangeEvent<HTMLInputElement>) => {
+    if (audioRef.current) {
+      audioRef.current.volume = Number(event.target.value);
+      setVolume(audioRef.current.volume);
+    }
+  };
+
 
   return (
     <div className={styles.bar}>
@@ -87,61 +107,14 @@ export default function Bar({ track }: BarType) {
                 </svg>
               </div>
             </div>
-            <div className={styles.playerTrackPlay}>
-              <div className={styles.trackPlayContain}>
-                <div className={styles.trackPlayImage}>
-                  <svg className={styles.trackPlaySvg}>
-                    <use xlinkHref="img/icon/sprite.svg#icon-note" />
-                  </svg>
-                </div>
-                <div className={styles.trackPlayAuthor}>
-                  <span className={styles.trackPlayAuthorLink}>
-                    {track.name}
-                  </span>
-                </div>
-                <div className={styles.trackPlayAlbum}>
-                  <span className={styles.trackPlayAlbumLink}>
-                    {track.author}
-                  </span>
-                </div>
-              </div>
-              <div className={styles.trackPlayLikeDis}>
-                <div
-                  className={classNames(styles.trackPlayLike, styles.btnIcon)}
-                >
-                  <svg className={styles.trackPlayLikeSvg}>
-                    <use xlinkHref="img/icon/sprite.svg#icon-like" />
-                  </svg>
-                </div>
-                <div
-                  className={classNames(
-                    styles.trackPlayDislike,
-                    styles.btnIcon
-                  )}
-                >
-                  <svg className={styles.trackPlayDislikeSvg}>
-                    <use xlinkHref="img/icon/sprite.svg#icon-dislike" />
-                  </svg>
-                </div>
-              </div>
-            </div>
+            <PlayerTrackPlay track={track}/>
           </div>
-          <div className={styles.barVolumeBlock}>
-            <div className={styles.volumeContent}>
-              <div className={styles.volumeImage}>
-                <svg className={styles.volumeSvg}>
-                  <use xlinkHref="img/icon/sprite.svg#icon-volume" />
-                </svg>
-              </div>
-              <div className={classNames(styles.volumeProgress, styles.btn)}>
-                <input
-                  className={classNames(styles.volumeProgressLine, styles.btn)}
-                  type="range"
-                  name="range"
-                />
-              </div>
-            </div>
-          </div>
+          <VolumeBar
+          min={0}
+          max={1}
+          step={0.01}
+          value={volume}
+          onChange={handleVolume}/>
         </div>
       </div>
     </div>

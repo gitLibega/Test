@@ -1,3 +1,5 @@
+import { ChangeEvent } from "react";
+
 type userType =  {
   id: number;
   username: string;
@@ -21,4 +23,12 @@ export type trackType = {
 export type ErrorType = {
   error: Error;
   reset: () => void;
+}
+
+export type VolumeType = {
+  min: number;
+  max: number;
+  step: number;
+  value: number;
+  onChange: (e: ChangeEvent<HTMLInputElement>) => void;
 }
