@@ -55,6 +55,7 @@ export default function Playlist({ setTrack }: PlayListType) {
             name={trackData.name}
             author={trackData.author}
             album={trackData.album}
+            duration_in_seconds={trackData.duration_in_seconds}
           />
         ))}
       </div>
