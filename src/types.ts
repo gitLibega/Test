@@ -32,3 +32,10 @@ export type VolumeType = {
   value: number;
   onChange: (e: ChangeEvent<HTMLInputElement>) => void;
 }
+
+export type PlayerControlsType = {
+  togglePlay: () => void;
+  isPlaying: boolean;
+  isLooping: boolean;
+  toggleLoop: () => void;
+};
