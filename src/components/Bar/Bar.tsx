@@ -2,18 +2,16 @@
 
 import { ChangeEvent, useEffect, useRef, useState } from "react";
 import styles from "./Bar.module.css";
-import { trackType } from "@/types";
 import ProgressBar from "../ProgressBar/ProgressBar";
 import VolumeBar from "../VolumeBar/VolumeBar";
 import PlayerTrackPlay from "../PlayerTrackPlay/PlayerTrackPlay";
 import PlayerControls from "../PlayerControls/PlayerControls";
 import { durationFormat } from "@/utils";
+import { useAppSelector } from "@/hooks";
 
-type BarType = {
-  track: trackType;
-};
+export default function Bar() {
+  const currentTrack = useAppSelector((state) => state.playlist.currentTrack);
 
-export default function Bar({ track }: BarType) {
   const [currentTime, setCurrentTime] = useState<number>(0);
   const [isPlaying, setIsPlaying] = useState<boolean>(false);
   const [volume, setVolume] = useState<number>(0.5);
@@ -71,43 +69,47 @@ export default function Bar({ track }: BarType) {
   };
 
   return (
-    <div className={styles.bar}>
-      <div className={styles.barContent}>
-        <audio
-          ref={audioRef}
-          src={track.track_file}
-          onTimeUpdate={(e) => setCurrentTime(e.currentTarget.currentTime)}
-        ></audio>
-        <div className={styles.trackTimeBlock}>
-          <div>{durationFormat(currentTime)}</div>
-          <div> / </div>
-          <div>{durationFormat(duration)}</div>
-        </div>
-        <ProgressBar
-          max={duration}
-          value={currentTime}
-          step={0.01}
-          onChange={handleSeek}
-        />
-        <div className={styles.barPlayerBlock}>
-          <div className={styles.barPlayer}>
-            <PlayerControls
-              togglePlay={togglePlay}
-              isPlaying={isPlaying}
-              toggleLoop={toggleLoop}
-              isLooping={isLooping}
+    <>
+      {currentTrack && (
+        <div className={styles.bar}>
+          <div className={styles.barContent}>
+            <audio
+              ref={audioRef}
+              src={currentTrack.track_file}
+              onTimeUpdate={(e) => setCurrentTime(e.currentTarget.currentTime)}
+            ></audio>
+            <div className={styles.trackTimeBlock}>
+              <div>{durationFormat(currentTime)}</div>
+              <div> / </div>
+              <div>{durationFormat(duration)}</div>
+            </div>
+            <ProgressBar
+              max={duration}
+              value={currentTime}
+              step={0.01}
+              onChange={handleSeek}
             />
-            <PlayerTrackPlay track={track} />
+            <div className={styles.barPlayerBlock}>
+              <div className={styles.barPlayer}>
+                <PlayerControls
+                  togglePlay={togglePlay}
+                  isPlaying={isPlaying}
+                  toggleLoop={toggleLoop}
+                  isLooping={isLooping}
+                />
+                <PlayerTrackPlay track={currentTrack} />
+              </div>
+              <VolumeBar
+                min={0}
+                max={1}
+                step={0.01}
+                value={volume}
+                onChange={handleVolume}
+              />
+            </div>
           </div>
-          <VolumeBar
-            min={0}
-            max={1}
-            step={0.01}
-            value={volume}
-            onChange={handleVolume}
-          />
         </div>
-      </div>
-    </div>
+      )}
+    </>
   );
 }

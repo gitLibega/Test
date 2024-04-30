@@ -1,7 +1,6 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import { playlistReducer } from "./features/playlistSlice";
-import { TypedUseSelectorHook, useDispatch, useSelector, useStore } from "react-redux";
-import Playlist from "@/components/Playlist/Playlist";
+
 
 // Функция makeStore создает и возвращает хранилище Redux с помощью функции configureStore.
 export const makeStore = () => {

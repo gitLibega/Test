@@ -1,17 +1,22 @@
+`use client`
+
 import { durationFormat } from "@/utils";
 import styles from "./Track.module.css";
+import { TrackType } from "@/types";
+import { useAppDispatch } from "@/hooks";
+import { setCurrentTrack } from "@/store/features/playlistSlice";
 
-type TrackType = {
-  name: string;
-  author: string;
-  album: string;
-  onClick: () => void;
-  duration_in_seconds: number;
+type PlaylistType = {
+  track: TrackType;
+  tracksData: TrackType[];
 };
 
-export default function Track({ name, author, album, duration_in_seconds, onClick,   }: TrackType) {
+export default function Track({ track, tracksData }: PlaylistType) {
+  
+  const { author, album, duration_in_seconds } = track;
+  const dispatch = useAppDispatch();
   return (
-    <div onClick={onClick} className={styles.playlistItem}>
+    <div onClick={() => dispatch(setCurrentTrack(track))} className={styles.playlistItem}>
       <div className={styles.playlistTrack}>
         <div className={styles.trackTitle}>
           <div className={styles.trackTitleImage}>
@@ -21,7 +26,7 @@ export default function Track({ name, author, album, duration_in_seconds, onClic
           </div>
           <div className={styles.trackTitleText}>
             <span className={styles.trackTitleLink} >
-              {name} <span className={styles.trackTitleSpan} />
+              {author} <span className={styles.trackTitleSpan} />
             </span>
           </div>
         </div>

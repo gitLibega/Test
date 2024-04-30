@@ -1,8 +1,8 @@
-import { trackType } from "@/types";
+import { TrackType } from "@/types";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 type PlaylistStateType =  {
-  currentTrack: null | trackType;    //св-во currentTrack будет отвечать за текущий трек, который мы выбрали из списка
+  currentTrack: null | TrackType;    //св-во currentTrack будет отвечать за текущий трек, который мы выбрали из списка
 }
 
 //Начальное состояние
@@ -14,7 +14,7 @@ const playlistSlice = createSlice({
   name: "playlist",
   initialState,
   reducers: {
-    setCurrentTrack: (state, action: PayloadAction<trackType>) => {
+    setCurrentTrack: (state, action: PayloadAction<TrackType>) => {
       state.currentTrack = action.payload;
     },
   },
