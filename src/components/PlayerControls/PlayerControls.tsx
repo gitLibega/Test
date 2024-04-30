@@ -1,6 +1,12 @@
 import { PlayerControlsType } from "@/types";
 import styles from "./PlayerControls.module.css";
 import classNames from "classnames";
+import { useAppDispatch, useAppSelector } from "@/hooks";
+import {
+  setIsShuffle,
+  setNextTrack,
+  setPreviousTrack,
+} from "@/store/features/playlistSlice";
 
 export default function PlayerControls({
   togglePlay,
@@ -8,9 +14,24 @@ export default function PlayerControls({
   isLooping,
   toggleLoop,
 }: PlayerControlsType) {
+  const isShuffle = useAppSelector((state) => state.playlist.isShuffle);
+  const dispatch = useAppDispatch();
+  const HandleNextTrack = () => {
+    dispatch(setNextTrack());
+  };
+  const HandlePreviousTrack = () => {
+    dispatch(setPreviousTrack());
+  };
+  const HandleShuffle = () => {
+    if (isShuffle) {
+      dispatch(setIsShuffle(false));
+    } else {
+      dispatch(setIsShuffle(true));
+    }
+  };
   return (
     <div className={styles.playerControls}>
-      <div className={styles.playerBtnPrev}>
+      <div onClick={HandlePreviousTrack} className={styles.playerBtnPrev}>
         <svg className={styles.playerBtnPrevSvg}>
           <use xlinkHref="img/icon/sprite.svg#icon-prev" />
         </svg>
@@ -24,23 +45,33 @@ export default function PlayerControls({
           />
         </svg>
       </div>
-      <div className={styles.playerBtnNext}>
+      <div onClick={HandleNextTrack} className={styles.playerBtnNext}>
         <svg className={styles.playerBtnNextSvg}>
           <use xlinkHref="img/icon/sprite.svg#icon-next" />
         </svg>
       </div>
-      <div onClick={toggleLoop} className={classNames(styles.playerBtnRepeat, styles.btnIcon)}>
+      <div
+        onClick={toggleLoop}
+        className={classNames(styles.playerBtnRepeat, styles.btnIcon)}
+      >
         <svg className={styles.playerBtnRepeatSvg}>
           <use
             xlinkHref={`/img/icon/sprite.svg#${
-              isLooping ? "icon-repeat"  : "icon-repeat-toggled"
+              isLooping ? "icon-repeat" : "icon-repeat-toggled"
             }`}
           />
         </svg>
       </div>
-      <div className={classNames(styles.playerBtnShuffle, styles.btnIcon)}>
+      <div
+        onClick={HandleShuffle}
+        className={classNames(styles.playerBtnShuffle, styles.btnIcon)}
+      >
         <svg className={styles.playerBtnShuffleSvg}>
-          <use xlinkHref="img/icon/sprite.svg#icon-shuffle" />
+          <use
+            xlinkHref={`img/icon/sprite.svg#${
+              isShuffle ? "icon-shuffle-toggled" : "icon-shuffle"
+            }`}
+          />
         </svg>
       </div>
     </div>
