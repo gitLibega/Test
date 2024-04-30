@@ -3,6 +3,7 @@ import styles from "./PlayerControls.module.css";
 import classNames from "classnames";
 import { useAppDispatch, useAppSelector } from "@/hooks";
 import {
+  setIsPlaying,
   setIsShuffle,
   setNextTrack,
   setPreviousTrack,
@@ -16,11 +17,14 @@ export default function PlayerControls({
 }: PlayerControlsType) {
   const isShuffle = useAppSelector((state) => state.playlist.isShuffle);
   const dispatch = useAppDispatch();
+  
   const HandleNextTrack = () => {
     dispatch(setNextTrack());
+    dispatch(setIsPlaying(true));
   };
   const HandlePreviousTrack = () => {
     dispatch(setPreviousTrack());
+    dispatch(setIsPlaying(true));
   };
   const HandleShuffle = () => {
     if (isShuffle) {

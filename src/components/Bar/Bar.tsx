@@ -7,13 +7,17 @@ import VolumeBar from "../VolumeBar/VolumeBar";
 import PlayerTrackPlay from "../PlayerTrackPlay/PlayerTrackPlay";
 import PlayerControls from "../PlayerControls/PlayerControls";
 import { durationFormat } from "@/utils";
-import { useAppSelector } from "@/hooks";
+import { useAppDispatch, useAppSelector } from "@/hooks";
+import { setIsPlaying, setNextTrack } from "@/store/features/playlistSlice";
 
 export default function Bar() {
   const currentTrack = useAppSelector((state) => state.playlist.currentTrack);
+  const isPlaying = useAppSelector((state) => state.playlist.isPlaying);
 
   const [currentTime, setCurrentTime] = useState<number>(0);
-  const [isPlaying, setIsPlaying] = useState<boolean>(false);
+
+  const dispatch = useAppDispatch();
+
   const [volume, setVolume] = useState<number>(0.5);
   const [isLooping, setIsLooping] = useState<boolean>(false);
   const audioRef = useRef<null | HTMLAudioElement>(null);
@@ -21,13 +25,30 @@ export default function Bar() {
   const duration = audioRef.current?.duration || 0;
 
   useEffect(() => {
+    if (isPlaying) {
+      audioRef.current?.play();
+    }
+  }, [isPlaying, currentTrack]);
+
+  useEffect(() => {
+    const audio = audioRef.current;
+    const handdleEnded = () => {
+      dispatch(setNextTrack());
+    };
+
+    audio?.addEventListener("ended", handdleEnded);
+
+    return () => audio?.removeEventListener("ended", handdleEnded);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [dispatch, audioRef.current]);
+
+  useEffect(() => {
     if (audioRef.current) {
       audioRef.current.volume = volume;
       audioRef.current.play();
-      setIsPlaying(true);
     }
     audioRef.current?.addEventListener("ended", () => {
-      setIsPlaying(false);
+  
       setCurrentTime(0);
     });
   }, [volume, duration]);
@@ -36,10 +57,12 @@ export default function Bar() {
     if (audioRef.current) {
       if (isPlaying) {
         audioRef.current.pause();
+        dispatch(setIsPlaying(false));
       } else {
         audioRef.current.play();
+        dispatch(setIsPlaying(true));
       }
-      setIsPlaying(!isPlaying);
+  
     }
   };
 
