@@ -1,9 +1,9 @@
-import { trackType } from "@/types";
+import { TrackType } from "@/types";
 import styles from "./PlayerTrackPlay.module.css";
 import classNames from "classnames";
 
 type TrackPlayType = {
-  track: trackType;
+  track: TrackType;
 };
 
 

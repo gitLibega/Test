@@ -3,14 +3,12 @@ import { getTracks } from "@/api/tracks";
 import Track from "../Track/Track";
 import styles from "./Plaulist.module.css";
 import classNames from "classnames";
-import { trackType } from "@/types";
+import { TrackType } from "@/types";
 import { useEffect, useState } from "react";
 
-type PlayListType = {
-  setTrack: (param: trackType) => void;
-};
 
-export default function Playlist({ setTrack }: PlayListType) {
+
+export default function Playlist() {
   //обработка ошибок
   // let tracksData: trackType[];
   // try {
@@ -20,10 +18,10 @@ export default function Playlist({ setTrack }: PlayListType) {
   // }
 
   //Получаем данные трека
-  const [tracksData, setTracksData] = useState<trackType[]>([]);
+  const [tracksData, setTracksData] = useState<TrackType[]>([]);
   useEffect(() => {
     getTracks()
-      .then((data: trackType[]) => setTracksData(data))
+      .then((data: TrackType[]) => setTracksData(data))
       .catch((error: any) => {
         throw new Error(error.message);
       });
@@ -48,14 +46,9 @@ export default function Playlist({ setTrack }: PlayListType) {
         </div>
       </div>
       <div className={styles.contentPlaylist}>
-        {tracksData.map((trackData) => (
+        {tracksData.map((track) => (
           <Track
-            onClick={() => setTrack(trackData)}
-            key={trackData.id}
-            name={trackData.name}
-            author={trackData.author}
-            album={trackData.album}
-            duration_in_seconds={trackData.duration_in_seconds}
+          key={track.id} track={track} tracksData={tracksData}
           />
         ))}
       </div>
