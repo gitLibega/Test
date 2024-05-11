@@ -1,14 +1,16 @@
 import { VolumeType } from "@/types";
 import styles from "./VolumeBar.module.css";
 import classNames from "classnames";
+import React from "react";
 
-export default function VolumeBar({
+const  VolumeBar = React.memo(
+  ({
   min,
   max,
   step,
   value,
   onChange,
-}: VolumeType) {
+}: VolumeType) => {
   return (
     <div className={styles.barVolumeBlock}>
       <div className={styles.volumeContent}>
@@ -33,3 +35,7 @@ export default function VolumeBar({
     </div>
   );
 }
+);
+
+VolumeBar.displayName = "ProgressBar";
+export default VolumeBar;

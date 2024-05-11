@@ -1,4 +1,4 @@
-import { ChangeEvent } from "react";
+import React, { ChangeEvent } from "react";
 import styles from "./ProgressBar.module.css";
 
 type ProgressBarType = {
@@ -8,7 +8,7 @@ type ProgressBarType = {
   onChange: (e: ChangeEvent<HTMLInputElement>) => void;
 };
 
-export default function ProgressBar({ max = 0, value, step, onChange }:ProgressBarType) {
+const ProgressBar = React.memo(({ max = 0, value, step, onChange }:ProgressBarType) => {
   return (
     <input
       className={styles.styledProgressInput} // Применение стилей к ползунку
@@ -20,4 +20,7 @@ export default function ProgressBar({ max = 0, value, step, onChange }:ProgressB
       onChange={onChange} // Обработчик события изменения
     />
   );
-}
+});
+
+ProgressBar.displayName = "ProgressBar"
+export default ProgressBar;

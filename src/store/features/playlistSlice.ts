@@ -7,6 +7,13 @@ type PlaylistStateType = {
   shuffledPlaylist: TrackType[];
   isShuffle: boolean;
   isPlaying: boolean;
+  filterOptions: {
+    author: string[];
+    genre: string[];
+    searchValue: string;
+  };
+  filteredTracks: TrackType[];
+  initialTracks: TrackType[];
 };
 
 //Начальное состояние
@@ -16,12 +23,26 @@ const initialState: PlaylistStateType = {
   shuffledPlaylist: [],
   isShuffle: false,
   isPlaying: false,
+  filterOptions: {
+    author: [],
+    genre: [],
+    searchValue: "",
+  },
+  filteredTracks: [],
+  initialTracks: [],
 };
 
 const playlistSlice = createSlice({
   name: "playlist",
   initialState,
   reducers: {
+    setInitialTracks: (
+      state,
+      action: PayloadAction<{ initialTracks: TrackType[] }>
+    ) => {
+      state.initialTracks = action.payload.initialTracks;
+      state.filteredTracks = action.payload.initialTracks;
+    },
     setCurrentTrack: (
       state,
       action: PayloadAction<{
@@ -65,8 +86,45 @@ const playlistSlice = createSlice({
     setIsPlaying: (state, action: PayloadAction<boolean>) => {
       state.isPlaying = action.payload;
     },
+    setFilters: (
+      state,
+      action: PayloadAction<{
+        author?: string[];
+        genre?: string[];
+        searchValue?: string;
+      }>
+    ) => {
+      state.filterOptions = {
+        genre: action.payload.genre || state.filterOptions.genre,
+        author: action.payload.author || state.filterOptions.author,
+        searchValue:
+          action.payload.searchValue || state.filterOptions.searchValue,
+      };
+      state.filteredTracks = state.initialTracks.filter((track) => {
+        const hasAuthors = state.filterOptions.author.length !== 0;
+        const hasGenres = state.filterOptions.genre.length !== 0;
+        const isAuthors = hasAuthors
+          ? state.filterOptions.author.includes(track.author)
+          : true;
+        const isGenres = hasGenres
+          ? state.filterOptions.genre.includes(track.genre)
+          : true;
+        const hasSearchValue = track.name
+          .toLowerCase()
+          .includes(state.filterOptions.searchValue.toLowerCase());
+        return isAuthors || isGenres && hasSearchValue;
+      });
+    },
   },
 });
 
-export const { setCurrentTrack, setNextTrack, setPreviousTrack, setIsShuffle, setIsPlaying } = playlistSlice.actions;
+export const {
+  setInitialTracks,
+  setCurrentTrack,
+  setNextTrack,
+  setPreviousTrack,
+  setIsShuffle,
+  setIsPlaying,
+  setFilters,
+} = playlistSlice.actions;
 export const playlistReducer = playlistSlice.reducer;
