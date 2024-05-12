@@ -3,7 +3,7 @@ import { TrackType } from "@/types";
 import styles from "./FilterItem.module.css";
 import classNames from "classnames";
 import { useAppDispatch, useAppSelector } from "@/hooks";
-import { setFilters } from "@/store/features/playlistSlice";
+import { setFilters} from "@/store/features/playlistSlice";
 import { order } from "../data";
 import { useEffect, useState } from "react";
 
@@ -14,6 +14,7 @@ type FilterItemType = {
   handleFilterClick: (newFilter: string) => void;
   isOpened: boolean;
   tracksData: TrackType[];
+  list: string[];
 };
 
 export default function FilterItem({
@@ -21,16 +22,16 @@ export default function FilterItem({
   title,
   value,
   isOpened,
+  list,
   tracksData,
 }: FilterItemType) {
   const [filterNumber, SetFilterNumber] = useState<number>(0);
-  const authorsList = useAppSelector(
-    (state) => state.playlist.filterOptions.author
-  );
-  const genreList = useAppSelector(
-    (state) => state.playlist.filterOptions.genre
-  );
   const dispatch = useAppDispatch();
+
+  const orderList = useAppSelector(
+    (state) => state.playlist.filterOptions.order
+  );
+
   const getFilterList = () => {
     if (value !== "order") {
       const array = new Set(
@@ -45,19 +46,42 @@ export default function FilterItem({
   const toggleFilter = (item: string) => {
     dispatch(
       setFilters({
-        author: authorsList.includes(item)
-          ? authorsList.filter((el) => el !== item)
-          : [...authorsList, item],
-        genre: genreList.includes(item)
-          ? genreList.filter((el) => el !== item)
-          : [...genreList, item],
+        [value]: list.includes(item)
+          ? list.filter((el) => el !== item)
+          : [...list, item],
       })
     );
+    // if (orderList && orderList.filter((item) => item === "Сначала новые")) {
+    //   dispatch(
+    //     setInitialTracks({
+    //       initialTracks: tracksData?.sort(
+    //         (a, b) => new Date(a.release_date) - new Date(b.release_date)
+    //       ),
+    //     })
+    //   );
+    // } else if (
+    //   orderList &&
+    //   orderList.filter((item) => item === "Сначала старые")
+    // ) {
+    //   dispatch(
+    //     setInitialTracks({
+    //       initialTracks: tracksData?.sort(
+    //         (a, b) =>
+    //   ),
+    //     })
+    //   );
+    // } else {
+    //   dispatch(
+    //     setInitialTracks({
+    //       initialTracks: tracksData,
+    //     })
+    //   );
+    // }
   };
 
   useEffect(() => {
-    SetFilterNumber(authorsList.length || genreList.length);
-  }, [authorsList.length, genreList.length]);
+    SetFilterNumber(list.length);
+  }, [list.length]);
 
   getFilterList();
   return (
@@ -67,7 +91,7 @@ export default function FilterItem({
           <div className={styles.titleFilterBox}>
             <div
               onClick={() => handleFilterClick(title)}
-              className={classNames(styles.filterButton, styles.activeFilter)}
+              className={classNames(styles.filterButton, styles.activeFilter, styles.btnText)}
             >
               {title}
             </div>
@@ -84,8 +108,7 @@ export default function FilterItem({
                   }}
                   key={item}
                   className={classNames(styles.listText, {
-                    [styles.listTextSelected]:
-                      authorsList.includes(item) || genreList.includes(item),
+                    [styles.listTextSelected]: list.includes(item),
                   })}
                 >
                   {item}
@@ -95,11 +118,16 @@ export default function FilterItem({
           </div>
         </div>
       ) : (
-        <div
-          onClick={() => handleFilterClick(title)}
-          className={classNames(styles.filterButton, styles.btnText)}
-        >
-          {title}
+        <div className={styles.titleFilterBox}>
+          <div
+            onClick={() => handleFilterClick(title)}
+            className={classNames(styles.filterButton, styles.btnText)}
+          >
+            {title}
+          </div>
+          {filterNumber > 0 ? (
+            <div className={styles.filterNumber}>{filterNumber}</div>
+          ) : null}
         </div>
       )}
     </>
