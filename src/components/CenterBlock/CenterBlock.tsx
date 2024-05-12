@@ -5,7 +5,7 @@ import Search from "../Search/Search";
 import Playlist from "../Playlist/Playlist";
 import { TrackType } from "@/types";
 import { getTracks } from "@/api/tracks";
-import { useAppDispatch, useAppSelector } from "@/hooks";
+import { useAppDispatch } from "@/hooks";
 import { setInitialTracks } from "@/store/features/playlistSlice";
 import { useEffect, useState } from "react";
 

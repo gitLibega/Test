@@ -48,7 +48,6 @@ export default function Bar() {
       audioRef.current.play();
     }
     audioRef.current?.addEventListener("ended", () => {
-  
       setCurrentTime(0);
     });
   }, [volume, duration]);
@@ -62,7 +61,6 @@ export default function Bar() {
         audioRef.current.play();
         dispatch(setIsPlaying(true));
       }
-  
     }
   };
 
@@ -79,7 +77,6 @@ export default function Bar() {
 
   const handleSeek = useCallback((event: ChangeEvent<HTMLInputElement>) => {
     if (audioRef.current) {
-      setCurrentTime(Number(event.target.value));
       audioRef.current.currentTime = Number(event.target.value);
     }
   }, []);
@@ -89,7 +86,7 @@ export default function Bar() {
       audioRef.current.volume = Number(event.target.value);
       setVolume(audioRef.current.volume);
     }
-  }, [])
+  }, []);
 
   return (
     <>
