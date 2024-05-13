@@ -5,7 +5,8 @@ import styles from "./Plaulist.module.css";
 import classNames from "classnames";
 import { TrackType } from "@/types";
 import { useEffect, useState } from "react";
-import { useAppSelector } from "@/hooks";
+import { useAppDispatch, useAppSelector } from "@/hooks";
+import { setInitialTracks } from "@/store/features/playlistSlice";
 
 
 
@@ -17,17 +18,17 @@ export default function Playlist() {
   // } catch (error:any) {
   //   throw new Error(error.message);
   // }
+  const dispatch = useAppDispatch();
   const [tracks, setTracks] = useState<TrackType[]>([]);
   const filteredTracks = useAppSelector((state) => state.playlist.filteredTracks)
   //Получаем данные трека
   const [tracksData, setTracksData] = useState<TrackType[]>([]);
   useEffect(() => {
-    getTracks()
-      .then((data: TrackType[]) => setTracksData(data))
-      .catch((error: any) => {
-        throw new Error(error.message);
-      });
-  }, []);
+    getTracks().then((tracksData) => {
+      setTracks(tracksData);
+      dispatch(setInitialTracks({ initialTracks: tracksData }));
+    });
+  }, [dispatch]);
 
   return (
     <div className={styles.centerblockContent}>
