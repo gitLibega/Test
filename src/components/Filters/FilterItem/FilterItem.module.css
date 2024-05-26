@@ -1,7 +1,8 @@
-.wrapper{
+.titleFilterBox {
+  display: flex;
   position: relative;
-  left: 10px;
 }
+
 .filterButton {
   font-style: normal;
   font-weight: 400;
@@ -10,46 +11,101 @@
   border: 1px solid #ffffff;
   border-radius: 60px;
   padding: 6px 20px;
-}
-.filter__button:not(:last-child) {
   margin-right: 10px;
 }
-._btnText:hover {
+
+.filterNumber {
+  position: absolute;
+  right: 0px;
+  bottom: 26px;
+  width: 26px;
+  height: 26px;
+  border-radius: 13px;
+  background: #ad61ff;
+  font-family: "Montserrat";
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 13px;
+  text-align: center;
+  padding: 6px;
+}
+
+.btnText:hover {
   border-color: #d9b6ff;
   color: #d9b6ff;
   cursor: pointer;
 }
-.active {
+
+/* .btnText:active {
+  border-color: #ad61ff;
+  color: #ad61ff;
+  cursor: pointer;
+} */
+
+.activeFilter {
   border-color: #ad61ff;
   color: #ad61ff;
   cursor: pointer;
 }
-.filterList {
-  display: flex;
-  position: absolute;
+
+.listContainer {
   width: 248px;
-  height: 305px;
-  top: 45px;
-  padding: 34px 0px 0px 0px;
-  gap: 10px;
-  border-radius: 8px;
+  height: auto;
+  padding: 34px;
+  margin-top: 12px;
+  margin-left: 0;
+  border-radius: 12px;
   opacity: 0px;
   background: #313131;
+  position: absolute;
+  cursor: default;
+}
+
+.listBox {
+  width: 180px;
+  max-height: 237px;
+  display: flex;
   flex-direction: column;
-  align-items: center;
-}
-.filterItem{
- font-family: "Montserrrat", sans-serif;
- font-size: 20px;
- font-weight: 400;
- line-height: 24px;
- text-align: left;
+  gap: 24px;
+  opacity: 0px;
+  overflow: auto;
 }
 
-.filterItem:hover{
-  color: #b672ff;
+.listText {
+  font-family: "Montserrat";
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 24px;
+  text-align: left;
+  color: #ffffff;
+}
+
+.listTextSelected {
   text-decoration: underline;
-  cursor: pointer;
+  color: #b672ff;
 }
 
+.listText:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.listText:active {
+  color: #b672ff;
+}
+
+.listBox::-webkit-scrollbar {
+  width: 6px;
+}
+
+.listBox::-webkit-scrollbar-track {
+  background: #4b4949;
+}
+
+.listBox::-webkit-scrollbar-thumb {
+  height: 10px;
+  background-color: blue;
+  border-radius: 8px;
+  border: 3px solid #ffffff;
+}
 
