@@ -1,13 +1,10 @@
 import Bar from "@/components/Bar/Bar";
+import CenterBlock from "@/components/CenterBlock/CenterBlock";
 import Navigation from "@/components/Navigation/Navigation";
 import SideBar from "@/components/SideBar/SideBar";
-import CenterBlock from "@/components/CenterBlock/CenterBlock";
-import styles from "./page.module.css"
+import styles from "./layout.module.css"
 
-
-export default function Home() {
- 
-
+export default function TrackLayout ({children}) {
   return (
     <div className={styles.wrapper}>
       <div className={styles.container}>
@@ -20,5 +17,5 @@ export default function Home() {
         <footer className={styles.footer} />
       </div>
     </div>
-  );
+  )
 }
