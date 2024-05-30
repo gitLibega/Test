@@ -47,7 +47,7 @@ export default function Playlist({tracks, playlist}:{tracks:TrackType[], playlis
         </div>
       </div>
       <div className={styles.contentPlaylist}>
-        {tracks.map((track) => (
+        {tracks?.map((track) => (
           <Track
           key={track.id} track={track} tracksData={playlist}
           />
