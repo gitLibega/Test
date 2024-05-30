@@ -1,18 +1,15 @@
-"use client";
-import styles from "./CentarBlock.module.css";
-import Filters from "../Filters/Filters";
-import Search from "../Search/Search";
-import Playlist from "../Playlist/Playlist";
-import { TrackType } from "@/types";
 import { getTracks } from "@/api/tracks";
+import CenterBlock from "@/components/CenterBlock/CenterBlock";
 import { useAppDispatch, useAppSelector } from "@/hooks";
 import { setInitialTracks } from "@/store/features/playlistSlice";
+import { TrackType } from "@/types";
 import { useEffect, useState } from "react";
 
-
-export default function CenterBlock() {
+export default function MainTrackPage() {
   const dispatch = useAppDispatch();
   const [tracks, setTracks] = useState<TrackType[]>([]);
+  
+  //Получаем данные трека
   
   useEffect(() => {
     getTracks().then((tracksData) => {
@@ -21,13 +18,5 @@ export default function CenterBlock() {
     });
   }, [dispatch]);
 
-
-  return (
-    <div className={styles.mainCenterblock}>
-      <Search />
-      <h2 className={styles.centerblockH2}>Треки</h2>
-      <Filters />
-      <Playlist />
-    </div>
-  );
+  return <CenterBlock />;
 }

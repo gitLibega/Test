@@ -1,16 +1,14 @@
 "use client";
-import { getTracks } from "@/api/tracks";
+
 import Track from "../Track/Track";
 import styles from "./Plaulist.module.css";
 import classNames from "classnames";
 import { TrackType } from "@/types";
-import { useEffect, useState } from "react";
-import { useAppDispatch, useAppSelector } from "@/hooks";
-import { setInitialTracks } from "@/store/features/playlistSlice";
+import { useAppSelector } from "@/hooks";
 
 
 
-export default function Playlist() {
+export default function Playlist({tracks, playlist}:{tracks:TrackType[], playlist:TrackType[]}) {
   //обработка ошибок
   // let tracksData: trackType[];
   // try {
@@ -18,17 +16,17 @@ export default function Playlist() {
   // } catch (error:any) {
   //   throw new Error(error.message);
   // }
-  const dispatch = useAppDispatch();
-  const [tracks, setTracks] = useState<TrackType[]>([]);
-  const filteredTracks = useAppSelector((state) => state.playlist.filteredTracks)
+  // const dispatch = useAppDispatch();
+  // const [tracks, setTracks] = useState<TrackType[]>([]);
+  // const filteredTracks = useAppSelector((state) => state.playlist.filteredTracks)
   //Получаем данные трека
-  const [tracksData, setTracksData] = useState<TrackType[]>([]);
-  useEffect(() => {
-    getTracks().then((tracksData) => {
-      setTracks(tracksData);
-      dispatch(setInitialTracks({ initialTracks: tracksData }));
-    });
-  }, [dispatch]);
+  // const [tracksData, setTracksData] = useState<TrackType[]>([]);
+  // useEffect(() => {
+  //   getTracks().then((tracksData) => {
+  //     setTracks(tracksData);
+  //     dispatch(setInitialTracks({ initialTracks: tracksData }));
+  //   });
+  // }, [dispatch]);
 
   return (
     <div className={styles.centerblockContent}>
@@ -49,9 +47,9 @@ export default function Playlist() {
         </div>
       </div>
       <div className={styles.contentPlaylist}>
-        {filteredTracks.map((track) => (
+        {tracks.map((track) => (
           <Track
-          key={track.id} track={track} tracksData={tracks}
+          key={track.id} track={track} tracksData={playlist}
           />
         ))}
       </div>
