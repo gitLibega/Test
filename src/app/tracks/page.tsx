@@ -9,7 +9,7 @@ import { useEffect, useState } from "react";
 export default function MainTrackPage() {
   const dispatch = useAppDispatch();
   const [tracks, setTracks] = useState<TrackType[]>([]);
-  
+  const filteredTracks = useAppSelector((state) => state.playlist.filteredTracks)
   //Получаем данные трека
   
   useEffect(() => {
@@ -19,5 +19,5 @@ export default function MainTrackPage() {
     });
   }, [dispatch]);
 
-  return <CenterBlock />;
+  return <CenterBlock tracks={filteredTracks} playlist={tracks} />;
 }

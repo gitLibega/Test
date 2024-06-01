@@ -3,6 +3,7 @@ import CenterBlock from "@/components/CenterBlock/CenterBlock";
 import Navigation from "@/components/Navigation/Navigation";
 import SideBar from "@/components/SideBar/SideBar";
 import styles from "./layout.module.css";
+import { Chilanka } from "next/font/google";
 
 export default function TrackLayout({
   children,
@@ -14,7 +15,7 @@ export default function TrackLayout({
       <div className={styles.container}>
         <main className={styles.main}>
           <Navigation />
-          <CenterBlock />
+         {children}
           <SideBar />
         </main>
         <Bar />
