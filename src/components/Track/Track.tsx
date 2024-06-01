@@ -1,6 +1,6 @@
 `use client`
 
-import { durationFormat } from "@/utils";
+import { durationFormat } from "@/lib/durationFormat";
 import styles from "./Track.module.css";
 import { TrackType } from "@/types";
 import { useAppDispatch, useAppSelector } from "@/hooks";
