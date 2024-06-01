@@ -31,7 +31,7 @@ export default function Track({ track, tracksData }: PlaylistType) {
             <svg className={classNames(styles.trackTitleSvg, {
                 [styles.trackIconIsplaying]: isPlaying && isCurrentTrack,
               })}>
-              <use xlinkHref={`img/icon/sprite.svg#${
+              <use xlinkHref={`/img/icon/sprite.svg#${
                   isCurrentTrack ? "icon-isplaying" : "icon-note"
                 }`} />
             </svg>
@@ -54,7 +54,7 @@ export default function Track({ track, tracksData }: PlaylistType) {
         </div>
         <div className={styles.trackTime}>
           <svg className={styles.trackTimeSvg}>
-            <use xlinkHref="img/icon/sprite.svg#icon-like" />
+            <use xlinkHref="/img/icon/sprite.svg#icon-like" />
           </svg>
           <span className={styles.trackTimeText}>{durationFormat(duration_in_seconds)}</span>
         </div>

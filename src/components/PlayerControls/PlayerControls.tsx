@@ -37,13 +37,13 @@ export default function PlayerControls({
     <div className={styles.playerControls}>
       <div onClick={HandlePreviousTrack} className={styles.playerBtnPrev}>
         <svg className={styles.playerBtnPrevSvg}>
-          <use xlinkHref="img/icon/sprite.svg#icon-prev" />
+          <use xlinkHref="/img/icon/sprite.svg#icon-prev" />
         </svg>
       </div>
       <div onClick={togglePlay} className={styles.playerBtnPlay}>
         <svg className={styles.playerBtnPlaySvg}>
           <use
-            xlinkHref={`img/icon/sprite.svg#${
+            xlinkHref={`/img/icon/sprite.svg#${
               isPlaying ? "icon-pause" : "icon-play"
             }`}
           />
@@ -51,7 +51,7 @@ export default function PlayerControls({
       </div>
       <div onClick={HandleNextTrack} className={styles.playerBtnNext}>
         <svg className={styles.playerBtnNextSvg}>
-          <use xlinkHref="img/icon/sprite.svg#icon-next" />
+          <use xlinkHref="/img/icon/sprite.svg#icon-next" />
         </svg>
       </div>
       <div
