@@ -6,7 +6,7 @@ import ProgressBar from "../ProgressBar/ProgressBar";
 import VolumeBar from "../VolumeBar/VolumeBar";
 import PlayerTrackPlay from "../PlayerTrackPlay/PlayerTrackPlay";
 import PlayerControls from "../PlayerControls/PlayerControls";
-import { durationFormat } from "@/utils";
+import { durationFormat } from "@/lib/durationFormat";
 import { useAppDispatch, useAppSelector } from "@/hooks";
 import { setIsPlaying, setNextTrack } from "@/store/features/playlistSlice";
 
