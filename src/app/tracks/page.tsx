@@ -10,6 +10,7 @@ export default function MainTrackPage() {
   const dispatch = useAppDispatch();
   const [tracks, setTracks] = useState<TrackType[]>([]);
   const filteredTracks = useAppSelector((state) => state.playlist.filteredTracks)
+  
   //Получаем данные трека
   
   useEffect(() => {
