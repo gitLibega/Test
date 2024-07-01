@@ -1,6 +1,6 @@
 import { ChangeEvent } from "react";
 
-type userType = {
+export type userType = {
   id: number;
   username: string;
   first_name: string;
