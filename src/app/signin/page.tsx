@@ -3,7 +3,9 @@ import Image from "next/image";
 import classNames from "classnames";
 import Link from "next/link";
 
+
 export default function SigninPage() {
+  //функция логина, которая будет делать запрос на сервер
   return (
     <div className={styles.wrapper}>
       <div className={styles.containerEnter}>

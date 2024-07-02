@@ -20,5 +20,5 @@ export default function MainTrackPage() {
     });
   }, [dispatch]);
 
-  return <CenterBlock tracks={filteredTracks} playlist={tracks} />;
+  return <CenterBlock tracks={filteredTracks} playlist={tracks} title="Треки"/>;
 }

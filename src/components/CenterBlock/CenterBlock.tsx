@@ -12,9 +12,11 @@ import { useEffect, useState } from "react";
 export default function CenterBlock({
   tracks,
   playlist,
+  title,
 }: {
   tracks: TrackType[];
   playlist: TrackType[];
+  title: string;
 }) {
   const dispatch = useAppDispatch();
   // const [tracks, setTracks] = useState<TrackType[]>([]);
@@ -29,7 +31,7 @@ export default function CenterBlock({
   return (
     <div className={styles.mainCenterblock}>
       <Search />
-      <h2 className={styles.centerblockH2}>Треки</h2>
+      <h2 className={styles.centerblockH2}>{title}</h2>
       <Filters />
       <Playlist tracks={tracks} playlist={tracks} />
     </div>

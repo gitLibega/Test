@@ -1,3 +1,5 @@
+import { title } from "process";
+
 const apiUrl = 'https://skypro-music-api.skyeng.tech/catalog/track/all/'
 const apiUrPlaylist = "https://skypro-music-api.skyeng.tech/catalog/selection/";
 
@@ -20,7 +22,7 @@ export async function getPlaylistTracks(id: string) {
     throw new Error("Ошибка при получении данных");
   }
   const data = await res.json();
-  return data.items;
+return{ items:data.items, title:data.name};
 }
 
 // // Обратите внимание, что функция компонента также является асинхронной

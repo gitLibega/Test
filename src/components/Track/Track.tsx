@@ -38,7 +38,7 @@ export default function Track({ track, tracksData }: PlaylistType) {
           </div>
           <div className={styles.trackTitleText}>
             <span className={styles.trackTitleLink} >
-              {author} <span className={styles.trackTitleSpan} />
+              {name} <span className={styles.trackTitleSpan} />
             </span>
           </div>
         </div>

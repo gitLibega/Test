@@ -21,6 +21,10 @@ export type TrackType = {
   stared_user: userType[];
   onClick: () => void;
 };
+export type CategoryType = {
+  items: TrackType[];
+  name: string;
+}
 export type ErrorType = {
   error: Error;
   reset: () => void;
