@@ -24,7 +24,7 @@ export type TrackType = {
 export type CategoryType = {
   items: TrackType[];
   name: string;
-}
+};
 export type ErrorType = {
   error: Error;
   reset: () => void;
@@ -43,4 +43,17 @@ export type PlayerControlsType = {
   isPlaying: boolean;
   isLooping: boolean;
   toggleLoop: () => void;
+};
+
+export type SigninFormType = {
+  email: string;
+  password: string;
+};
+
+export type AuthStateType = {
+  user: null | userType;
+  tokens: {
+    access: string | null;
+    refresh: string | null;
+  };
 };

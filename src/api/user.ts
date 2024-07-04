@@ -1,7 +1,5 @@
-type SigninFormType = {
-  email: string;
-  password: string;
-}
+import {SigninFormType} from "@/types"
+
 export  async function fetchUser({email, password}: SigninFormType) {
   const response = await fetch (
     "https://skypro-music-api.skyeng.tech/user/login/",
