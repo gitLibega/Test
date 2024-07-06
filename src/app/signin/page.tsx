@@ -70,7 +70,7 @@ export default function SigninPage() {
               onChange={handleChange}
             />
             <button className={styles.modalBtnEnter} onClick={handleSubmit}>
-              Войти
+              <a>Войти</a> 
             </button>
             <button className={styles.modalBtnSignup}>
               <Link href="/signup">Зарегистрироваться</Link>
