@@ -41,9 +41,40 @@ export async function getPlaylistTracks(id: string) {
   return { items: data.items, title: data.name };
 }
 
+
 // // Обратите внимание, что функция компонента также является асинхронной
 // export default async function HomePage() {
 //   const data = await getData();
 
 //   return <main>/* Некий контент */</main>;
 // }
+
+//Поставить лайк
+export async function setLike(token: string, id:number) {
+  const res = await fetch(`https://skypro-music-api.skyeng.tech/catalog/track/${id}/favorite/`, {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+  if (!res.ok) {
+    throw new Error("Ошибка при получении данных");
+  }
+  const data = await res.json();
+  return data;
+}
+
+//Убрать лайк
+export async function setDislike(token: string, id:number) {
+  const res = await fetch(`https://skypro-music-api.skyeng.tech/catalog/track/${id}/favorite/`, {
+    method: "DELETE",
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+  if (!res.ok) {
+    throw new Error("Ошибка при получении данных");
+  }
+  const data = await res.json();
+  return data;
+}
