@@ -28,7 +28,7 @@ export async function fetchFavoritesTracks(access:string) {
     throw new Error("Ошибка при получении данных");
   }
 
-  return response.json;
+  return response.json();
 }
 
 export async function getPlaylistTracks(id: string) {

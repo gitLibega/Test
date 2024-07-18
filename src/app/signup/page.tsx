@@ -25,7 +25,11 @@ export default function SignupPage() {
   };
 
   const handleSignup = async () => {
-    await signup(signupData)
+    await signup({
+      email: signupData.email,
+      password: signupData.password,
+      username: signupData.email,
+    })
       .then((data) => {
         login(data);
       })
@@ -53,7 +57,7 @@ export default function SignupPage() {
               className={classNames(styles.modalInput, styles.login)}
               type="text"
               name="username"
-              placeholder="Введите имя профиля"
+              placeholder="Введите адрес электронной почты."
             />
             <input
               onChange={handleInputChange}
