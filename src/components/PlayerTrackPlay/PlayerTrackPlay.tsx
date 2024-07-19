@@ -9,15 +9,16 @@ type TrackPlayType = {
   track: TrackType;
 };
 
-export default function PlayerTrackPlay({ track }: TrackPlayType) {
+export default function PlayerTrackPlay({ track}: TrackPlayType) {
   const currentTrack = useAppSelector((state) => state.playlist.currentTrack);
   const [isLiked, setIsLiked] = useState<any>();//Нужно поискать(includes, как в slice) в LikedTracks[] есть ли currentTrack.id
   const token = useAppSelector((state) => state.auth.tokens);
 
   const user = useAppSelector((state) => state.auth.user);
-  
 
-  const handleLikeClick = () => {
+  const handleLikeClick = (e:any) => {
+    
+    e.stopPropagation();
     if (!token.access || !token.refresh || !user) {
       return;
     }
@@ -44,20 +45,11 @@ export default function PlayerTrackPlay({ track }: TrackPlayType) {
       </div>
       <div className={styles.trackPlayLikeDis}>
         <div
-          onClick={handleLikeClick}
+          onClick={(e) => handleLikeClick(e)}
           className={classNames(styles.trackPlayLike, styles.btnIcon)}
         >
-          <svg className={styles.trackPlayLikeSvg}>
+          <svg className={(isLiked || track.stared_user?.find(x => x.id == user?.id )) ? styles.trackPlayLikeSvg : styles.trackPlayDislikeSvg  }>
             <use xlinkHref="/img/icon/sprite.svg#icon-like" />
-          </svg>
-        </div>
-        <div className={classNames(styles.trackPlayDislike, styles.btnIcon)}>
-          <svg className={styles.trackPlayDislikeSvg}>
-            <use
-              xlinkHref={`/img/icon/sprite.svg#${
-                isLiked ? "icon-dislike" : "icon-like"
-              }`}
-            />
           </svg>
         </div>
       </div>

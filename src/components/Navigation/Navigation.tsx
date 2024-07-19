@@ -37,9 +37,9 @@ export default function Navigation() {
               </Link>
             </li>
             <li className={styles.menuItem}>
-              <a href="#" className={styles.menuLink}>
+              <Link href="/tracks/favorites" className={styles.menuLink}>
                 Мой плейлист
-              </a>
+              </Link>
             </li>
             <li className={styles.menuItem}>
               <a href="/signin" className={styles.menuLink}>

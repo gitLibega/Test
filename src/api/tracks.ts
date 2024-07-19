@@ -50,7 +50,7 @@ export async function getPlaylistTracks(id: string) {
 // }
 
 //Поставить лайк
-export async function setLike(token: string, id:number) {
+export async function setLike(token: string, id:number| undefined) {
   const res = await fetch(`https://skypro-music-api.skyeng.tech/catalog/track/${id}/favorite/`, {
     method: "POST",
     headers: {
@@ -65,7 +65,7 @@ export async function setLike(token: string, id:number) {
 }
 
 //Убрать лайк
-export async function setDislike(token: string, id:number) {
+export async function setDislike(token: string, id:number | undefined) {
   const res = await fetch(`https://skypro-music-api.skyeng.tech/catalog/track/${id}/favorite/`, {
     method: "DELETE",
     headers: {

@@ -12,7 +12,7 @@ import { useEffect, useState } from "react";
 export default function CenterBlock({
   tracks,
   playlist,
-  title,
+  title
 }: {
   tracks: TrackType[];
   playlist: TrackType[];

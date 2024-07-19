@@ -1,22 +1,33 @@
 "use client";
 
-import { getFavoritesTracks, getPlaylistTracks, getToken } from "@/api/tracks";
+import { fetchFavoritesTracks} from "@/api/tracks";
+import CenterBlock from "@/components/CenterBlock/CenterBlock";
 import Playlist from "@/components/Playlist/Playlist";
+import { useAppSelector } from "@/hooks";
 import { useUser } from "@/hooks/useUser";
 import { getValueFromLocalStorage } from "@/lib/getValueFromLs";
+import { setLikedTracks } from "@/store/features/playlistSlice";
 import { TrackType } from "@/types";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
 export default function FavoritesPage() {
-  const [tracksData, setTracksData] = useState<TrackType[]>([]);
+  const [tracksData, setLikedTracks] = useState<TrackType[]>([]);
   const { logout } = useUser();
   const router = useRouter();
+  const token = useAppSelector((state) => state.auth.tokens);
+  const user = useAppSelector((state) => state.auth.user);
   useEffect(() => {
-    const token = getValueFromLocalStorage("token");
-    getFavoritesTracks(token?.access)
-      .then((data) => {
-        setTracksData(data);
+    if(!token.access) {
+      return;
+    }
+    fetchFavoritesTracks(token.access)
+      .then((data: TrackType[]) => {
+        if(!user) return;
+        data.forEach(element => {
+          element.stared_user = [user];
+        });
+        setLikedTracks(data);
       })
       .catch((error) => {
         if (error.message === "401") {
@@ -29,7 +40,11 @@ export default function FavoritesPage() {
   }, [logout, router]);
   return (
     <>
-      <Playlist tracks={tracksData} playlist={tracksData} isFavorite={true} />
+      <CenterBlock
+        tracks={tracksData}
+        playlist={tracksData}
+        title={"Мои треки"}
+      />
     </>
   );
 }

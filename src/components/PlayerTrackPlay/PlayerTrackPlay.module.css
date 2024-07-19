@@ -95,17 +95,18 @@
 .trackPlayLike,
 .trackPlayDislike {
   padding: 5px;
+  cursor: pointer;
+}
+
+.trackPlayDislike {
+  margin-left: 28.5px;
 }
 
 .trackPlayLikeSvg {
   width: 14px;
   height: 12px;
-  fill: transparent;
-  stroke: #696969;
-}
-
-.trackPlayDislike {
-  margin-left: 28.5px;
+  fill: #b672ff;
+  stroke: #b672ff;
 }
 
 .trackPlayDislikeSvg {

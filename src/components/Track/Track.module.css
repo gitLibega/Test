@@ -154,8 +154,23 @@
   
 } */
 .trackTime{
+  cursor: pointer;
   width: 100px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+.trackPlayLikeSvg {
+  width: 14px;
+  height: 12px;
+  fill: #b672ff;
+  stroke: #b672ff;
+}
+
+.trackPlayDislikeSvg {
+  width: 14.34px;
+  height: 13px;
+  fill: transparent;
+  stroke: #696969;
 }
